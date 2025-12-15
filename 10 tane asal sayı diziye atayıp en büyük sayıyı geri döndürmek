@@ -1,0 +1,57 @@
+/*Klavyeden sayılar giriliyor.
+Bu sayılar içinden 10 tane asal sayı girildiğinde:
+
+bu asal sayıları bir diziye ata
+
+dizideki en büyük sayıyı ekrana yazdır
+
+Not: Sadece main yazılması yeterli*/
+
+
+
+
+
+import java.util.Random;
+
+public class Main {
+
+    public static boolean asalMi(int sayi) {
+        if (sayi <= 1) {
+            return false;
+        }
+
+        for (int i = 2; i * i <= sayi; i++) {
+            if (sayi % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        Random random = new Random();
+
+        int[] asalSayilar = new int[10];
+        int sayac = 0;
+
+        while (sayac < 10) {
+            int sayi = random.nextInt(100) + 1; // 1-100 arası
+
+            if (asalMi(sayi)) {
+                asalSayilar[sayac] = sayi;
+                sayac++;
+            }
+        }
+
+        int enBuyuk = asalSayilar[0];
+
+        for (int i = 1; i < 10; i++) {
+            if (asalSayilar[i] > enBuyuk) {
+                enBuyuk = asalSayilar[i];
+            }
+        }
+
+        System.out.println("En büyük asal sayı = " + enBuyuk);
+    }
+}
