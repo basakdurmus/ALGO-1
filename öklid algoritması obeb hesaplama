@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+
+
+public class OklidOBEB {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("--- Öklid Algoritması ile OBEB Hesaplama ---");
+        
+        System.out.print("Birinci sayıyı (A) giriniz: ");
+        int sayi1 = input.nextInt();
+        
+        System.out.print("İkinci sayıyı (B) giriniz: ");
+        int sayi2 = input.nextInt();
+
+        // OBEB hesapla ve sonucu yazdır
+        int sonuc = obebHesapla(sayi1, sayi2);
+        System.out.println("\nSonuç: OBEB(" + sayi1 + ", " + sayi2 + ") = " + sonuc);
+        
+        input.close();
+    }
+
+    /**
+     * Öklid Algoritması kullanarak OBEB bulan fonksiyon
+     */
+    public static int obebHesapla(int a, int b) {
+        // Math.abs kullanmadan negatif sayıları pozitife çevirme
+        if (a < 0) {
+            a = -a;
+        }
+        if (b < 0) {
+            b = -b;
+        }
+
+        // Algoritma gereği A=0 ise sonuç B'dir
+        if (a == 0) return b;
+        // Algoritma gereği B=0 ise sonuç A'dır
+        if (b == 0) return a;
+
+        System.out.println("\nİşlem Adımları:");
+        
+        // Öklid Döngüsü (Kalan 0 olana kadar devam eder)
+        while (b != 0) {
+            int q = a / b; // Bölüm
+            int r = a % b; // Kalan
+            
+            System.out.println(a + " = " + b + " * " + q + " + " + r);
+            
+            // Yeni değerleri ata: A yerine eski B, B yerine kalan (r) gelir
+            a = b;
+            b = r;
+        }
+        
+        return a;
+    }
+}
