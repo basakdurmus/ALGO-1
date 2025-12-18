@@ -1,0 +1,17 @@
+/*30 cm çapındaki bir top 2mt yükselikten dikey yönde aşağı doğdu bırakılıyor. Top her
+zıplayısışında bir önceki zıplayışının %80 ‘ i kadar yükseliyor. Top durana kadar toplamda ne
+kadar yol aldığını bulan recursif metodu yazınız. Not: Sadece metod yazılacaktır./*
+
+public static double toplamYol(double yukseklik) {
+    // 1. Durma şartı
+    if (yukseklik < 0.001) {
+        return 0;
+    }
+
+    // 2. Bir sonraki zıplama yüksekliğini hesapla
+    double yeniYukseklik = yukseklik * 0.8;
+
+    // 3. Toplam yol = Mevcut düşüş + Çıkış-İniş (yeniYukseklik * 2) + Gerisi...
+    // Bu mantıkla her adımda bir sonraki zıplamanın gidiş-dönüşünü de peşinen ekliyoruz.
+    return yukseklik + (yeniYukseklik * 2) + toplamYol(yeniYukseklik);
+}
