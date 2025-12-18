@@ -1,0 +1,53 @@
+/*Kendisine parametre olarak 3x3 lük iki boyutlu bir matrisi alan ve matrisin satırlarındaki en büyük
+elemanları geri döndüren bir metot yazınız? Örnek: Aşağıdaki 3x3 boyutundaki tamsayı matrisini paramatre alan
+methodumuz geri olarak 1. Satırdaki en büyük 4 değerini, 2. satırdaki 11 değerini 3. satırdaki 15 değerini geri*/
+
+
+
+
+public class MatrisIslemleri {
+
+    public static void main(String[] args) {
+        // Örnekteki 3x3'lük matris
+        int[][] matris = {
+            {1, 4, 3},
+            {9, 11, -6},
+            {5, 5, 15}
+        };
+
+        // Metodu çağır ve sonuçları al
+        int[] sonuclar = satirlardakiEnBuyukleriBul(matris);
+
+        // Sonuçları ekrana yazdır
+        for (int i = 0; i < sonuclar.length; i++) {
+            System.out.println((i + 1) + ". Satırdaki en büyük değer: " + sonuclar[i]);
+        }
+    }
+
+    /**
+     * Her satırdaki en büyük elemanı bulan metot
+     */
+    public static int[] satirlardakiEnBuyukleriBul(int[][] matris) {
+        // Her satırın en büyüğünü saklamak için matrisin satır sayısı kadar bir dizi oluşturuyoruz
+        int[] enBuyukler = new int[matris.length];
+
+        // Satırları tek tek dönüyoruz
+        for (int i = 0; i < matris.length; i++) {
+            
+            // Her satırın başında o satırın ilk elemanını en büyük kabul ediyoruz
+            int max = matris[i][0];
+
+            // Satırın diğer sütunlarını kontrol ediyoruz
+            for (int j = 1; j < matris[i].length; j++) {
+                if (matris[i][j] > max) {
+                    max = matris[i][j]; // Daha büyük bir sayı bulunca max'ı güncelliyoruz
+                }
+            }
+            
+            // Bulduğumuz en büyük değeri sonuç dizisine ekliyoruz
+            enBuyukler[i] = max;
+        }
+
+        return enBuyukler;
+    }
+}
