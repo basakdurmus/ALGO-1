@@ -1,0 +1,47 @@
+public class KarakterSayici {
+
+    public static void main(String[] args) {
+        // Örnek bir 5x6'lık karakter dizisi
+        char[][] dizi = {
+            {'A', 'b', 'C', 'd', 'E', 'f'},
+            {'G', 'h', 'I', 'j', 'K', 'l'},
+            {'M', 'N', 'O', 'P', 'Q', 'R'}, // Hepsi büyük
+            {'s', 't', 'u', 'v', 'w', 'x'}, // Hepsi küçük
+            {'1', '2', '!', '?', 'Y', 'z'}  // Karışık ve harf dışı
+        };
+
+        int[] sonuclar = harfSayilariniBul(dizi);
+
+        System.out.println("Büyük Harf Sayısı: " + sonuclar[0]);
+        System.out.println("Küçük Harf Sayısı: " + sonuclar[1]);
+    }
+
+    /**
+     * 2D dizideki harfleri sayan metod
+     * @return int[] -> [0] büyük harf sayısı, [1] küçük harf sayısı
+     */
+    public static int[] harfSayilariniBul(char[][] matris) {
+        int buyukSayac = 0;
+        int kucukSayac = 0;
+
+        // Satırları dön
+        for (int i = 0; i < matris.length; i++) {
+            // Sütunları dön
+            for (int j = 0; j < matris[i].length; j++) {
+                char karakter = matris[i][j];
+
+                // Büyük harf kontrolü (A-Z arası)
+                if (karakter >= 'A' && karakter <= 'Z') {
+                    buyukSayac++;
+                } 
+                // Küçük harf kontrolü (a-z arası)
+                else if (karakter >= 'a' && karakter <= 'z') {
+                    kucukSayac++;
+                }
+            }
+        }
+
+        // İki değeri bir dizi içinde geri döndürüyoruz
+        return new int[]{buyukSayac, kucukSayac};
+    }
+}
